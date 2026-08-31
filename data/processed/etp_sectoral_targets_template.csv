@@ -1,0 +1,6 @@
+sector,baseline_year,target_year,target_metric,source
+power,2020,2060,renewables_share_pct,Nigeria ETP 2022/2024
+oil_gas,2020,2030,zero_routine_flaring,GGFR / Climate Change Act
+transport,2020,2060,ev_share_pct,Nigeria ETP 2022/2024
+cooking,2020,2030,clean_cooking_access,Nigeria ETP 2022/2024
+industry,2020,2060,emissions_intensity,Nigeria ETP 2022/2024

@@ -1,0 +1,147 @@
+=== Moran's I by year ===
+# A tibble: 13 × 3
+    Year moran_I  p_value
+   <dbl>   <dbl>    <dbl>
+ 1  2012   0.593 2.38e-11
+ 2  2013   0.569 4.14e-11
+ 3  2014   0.587 2.38e-11
+ 4  2015   0.531 2.78e-10
+ 5  2016   0.569 6.71e-11
+ 6  2017   0.531 2.57e-10
+ 7  2018   0.437 2.97e- 9
+ 8  2019   0.431 3.18e- 9
+ 9  2020   0.453 2.55e- 9
+10  2021   0.461 4.47e- 9
+11  2022   0.385 1.24e- 7
+12  2023   0.374 9.85e- 8
+13  2024   0.450 2.74e- 8
+
+=== Moran's I on 2012-2024 average ===
+
+	Moran I test under randomisation
+
+data:  panel_avg$flare_vol_mcm_avg  
+weights: lw    
+
+Moran I statistic standard deviate =
+6.0708, p-value = 6.362e-10
+alternative hypothesis: greater
+sample estimates:
+Moran I statistic       Expectation 
+      0.505820609      -0.027777778 
+         Variance 
+      0.007725587 
+
+
+=== LM diagnostic tests (lag vs error) ===
+
+	Rao's score (a.k.a Lagrange multiplier)
+	diagnostics for spatial dependence
+
+data:  
+model: lm(formula = flare_vol_mcm_avg ~ 1,
+data = panel_avg)
+test weights: listw
+
+RSerr = 19.863, df = 1, p-value = 8.32e-06
+
+
+	Rao's score (a.k.a Lagrange multiplier)
+	diagnostics for spatial dependence
+
+data:  
+model: lm(formula = flare_vol_mcm_avg ~ 1,
+data = panel_avg)
+test weights: listw
+
+RSlag = 19.863, df = 1, p-value = 8.32e-06
+
+
+	Rao's score (a.k.a Lagrange multiplier)
+	diagnostics for spatial dependence
+
+data:  
+model: lm(formula = flare_vol_mcm_avg ~ 1,
+data = panel_avg)
+test weights: listw
+
+adjRSerr = 5.8023e-14, df = 1, p-value = 1
+
+
+	Rao's score (a.k.a Lagrange multiplier)
+	diagnostics for spatial dependence
+
+data:  
+model: lm(formula = flare_vol_mcm_avg ~ 1,
+data = panel_avg)
+test weights: listw
+
+adjRSlag = 2.8422e-14, df = 1, p-value = 1
+
+
+	Rao's score (a.k.a Lagrange multiplier)
+	diagnostics for spatial dependence
+
+data:  
+model: lm(formula = flare_vol_mcm_avg ~ 1,
+data = panel_avg)
+test weights: listw
+
+SARMA = 19.863, df = 2, p-value = 4.862e-05
+
+
+=== Spatial lag model ===
+
+Call:
+lagsarlm(formula = flare_vol_mcm_avg ~ 1, data = panel_avg, listw = lw, 
+    zero.policy = TRUE)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-319.100  -42.610  -38.723  -38.723 1235.962 
+
+Type: lag 
+Coefficients: (asymptotic standard errors) 
+            Estimate Std. Error z value Pr(>|z|)
+(Intercept)   38.723     44.189  0.8763   0.3809
+
+Rho: 0.61397, LR test value: 14.318, p-value: 0.0001544
+Asymptotic standard error: 0.14573
+    z-value: 4.213, p-value: 2.5196e-05
+Wald statistic: 17.75, p-value: 2.5196e-05
+
+Log likelihood: -259.2687 for lag model
+ML residual variance (sigma squared): 64343, (sigma: 253.66)
+Number of observations: 37 
+Number of parameters estimated: 3 
+AIC: 524.54, (AIC for lm: 536.86)
+LM test for residual autocorrelation
+test value: 0.3178, p-value: 0.57293
+
+
+=== Spatial error model ===
+
+Call:
+errorsarlm(formula = flare_vol_mcm_avg ~ 1, data = panel_avg, 
+    listw = lw, Durbin = FALSE, zero.policy = TRUE)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-319.100  -42.610  -38.723  -38.723 1235.962 
+
+Type: error 
+Coefficients: (asymptotic standard errors) 
+            Estimate Std. Error z value Pr(>|z|)
+(Intercept)   100.31     108.03  0.9286   0.3531
+
+Lambda: 0.61397, LR test value: 14.318, p-value: 0.0001544
+Asymptotic standard error: 0.14573
+    z-value: 4.213, p-value: 2.5196e-05
+Wald statistic: 17.75, p-value: 2.5196e-05
+
+Log likelihood: -259.2687 for error model
+ML residual variance (sigma squared): 64343, (sigma: 253.66)
+Number of observations: 37 
+Number of parameters estimated: 3 
+AIC: 524.54, (AIC for lm: 536.86)
+

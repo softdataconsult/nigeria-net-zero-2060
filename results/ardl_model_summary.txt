@@ -1,0 +1,130 @@
+=== Best ARDL model ===
+
+Time series regression with "ts" data:
+Start = 3, End = 30
+
+Call:
+dynlm::dynlm(formula = full_formula, data = data, start = start, 
+    end = end)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-17.3997  -3.9853   0.3329   5.0715  13.0257 
+
+Coefficients:
+                          Estimate Std. Error
+(Intercept)              5.628e+01  1.467e+01
+L(co2, 1)                3.006e-01  2.037e-01
+gdp                      2.627e-11  2.067e-11
+L(gdp, 1)               -2.255e-11  3.374e-11
+L(gdp, 2)                4.241e-11  2.522e-11
+energy_per_capita        2.444e-02  8.255e-03
+L(energy_per_capita, 1) -2.311e-02  7.792e-03
+policy_index             1.027e+01  7.442e+00
+                        t value Pr(>|t|)   
+(Intercept)               3.837  0.00103 **
+L(co2, 1)                 1.475  0.15565   
+gdp                       1.271  0.21833   
+L(gdp, 1)                -0.668  0.51152   
+L(gdp, 2)                 1.682  0.10821   
+energy_per_capita         2.961  0.00772 **
+L(energy_per_capita, 1)  -2.966  0.00764 **
+policy_index              1.381  0.18266   
+---
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 8.191 on 20 degrees of freedom
+Multiple R-squared:  0.8539,	Adjusted R-squared:  0.8028 
+F-statistic:  16.7 on 7 and 20 DF,  p-value: 4.394e-07
+
+
+=== Bounds test for cointegration ===
+NULL
+
+=== UECM (long-run + short-run) ===
+
+Time series regression with "ts" data:
+Start = 3, End = 30
+
+Call:
+dynlm::dynlm(formula = full_formula, data = data, start = start, 
+    end = end)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-17.3997  -3.9853   0.3329   5.0715  13.0257 
+
+Coefficients:
+                          Estimate Std. Error
+(Intercept)              5.628e+01  1.467e+01
+L(co2, 1)               -6.994e-01  2.037e-01
+L(gdp, 1)                4.613e-11  1.475e-11
+L(energy_per_capita, 1)  1.333e-03  8.791e-03
+d(gdp)                   2.627e-11  2.067e-11
+d(L(gdp, 1))            -4.241e-11  2.522e-11
+d(energy_per_capita)     2.444e-02  8.255e-03
+policy_index             1.027e+01  7.442e+00
+                        t value Pr(>|t|)   
+(Intercept)               3.837  0.00103 **
+L(co2, 1)                -3.433  0.00263 **
+L(gdp, 1)                 3.127  0.00531 **
+L(energy_per_capita, 1)   0.152  0.88096   
+d(gdp)                    1.271  0.21833   
+d(L(gdp, 1))             -1.682  0.10821   
+d(energy_per_capita)      2.961  0.00772 **
+policy_index              1.381  0.18266   
+---
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 8.191 on 20 degrees of freedom
+Multiple R-squared:  0.6734,	Adjusted R-squared:  0.5591 
+F-statistic: 5.892 on 7 and 20 DF,  p-value: 0.0008135
+
+
+=== Long-run multipliers ===
+               Term     Estimate   Std. Error
+1       (Intercept) 8.047344e+01 2.069917e+01
+2               gdp 6.595593e-11 2.379602e-11
+3 energy_per_capita 1.906435e-03 1.223707e-02
+    t value     Pr(>|t|)
+1 3.8877624 0.0009145473
+2 2.7717216 0.0117695487
+3 0.1557918 0.8777588929
+
+=== Diagnostics ===
+
+--- Breusch-Godfrey ---
+
+	Breusch-Godfrey test for serial correlation
+	of order up to 2
+
+data:  uecm_model
+LM test = 6.0942, df = 2, p-value = 0.0475
+
+
+--- Breusch-Pagan ---
+
+	studentized Breusch-Pagan test
+
+data:  uecm_model
+BP = 10.206, df = 7, p-value = 0.1772
+
+
+--- Jarque-Bera ---
+
+	Jarque Bera Test
+
+data:  residuals(uecm_model)
+X-squared = 0.57614, df = 2, p-value =
+0.7497
+
+
+--- CUSUM stability ---
+
+	OLS-based CUSUM test
+
+data:  cusum_test
+S0 = 0.54955, p-value = 0.9233
+
